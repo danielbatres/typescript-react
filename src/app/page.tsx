@@ -11,16 +11,21 @@ type ImageItem = {
 };
 
 export default function Home() {
-  const [images, setImages] = useState<Array<ImageItem>>([
-    { id: generateId(), url: `https://randomfox.ca/images/${random()}.jpg` },
-    { id: generateId(), url: `https://randomfox.ca/images/${random()}.jpg` },
-    { id: generateId(), url: `https://randomfox.ca/images/${random()}.jpg` },
-    { id: generateId(), url: `https://randomfox.ca/images/${random()}.jpg` },
-  ]);
+  const [images, setImages] = useState<Array<ImageItem>>([]);
+
+  const addNewFox = () => {
+    const newItem = {
+      id: generateId(),
+      url: `https://randomfox.ca/images/${random()}.jpg`,
+    };
+
+    setImages([...images, newItem]);
+  }
 
   return (
     <>
       <h1>Hello</h1>
+      <button onClick={addNewFox}>Add new fox</button>
       {images.map((imageItem) => (
         <div key={imageItem.id} className="p-4">
           <RandomFox image={imageItem.url} />
